@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContextPack",
+  "type": "object",
+  "required": ["id", "agent", "task", "rules_pack", "knowledge_pack", "limits"],
+  "properties": {
+    "id": { "type": "string" },
+    "agent": { "type": "string" },
+    "task": { "type": "string" },
+    "rules_pack": { "type": "array", "items": { "type": "string" } },
+    "identity_pack": { "type": "array", "items": { "type": "string" } },
+    "knowledge_pack": { "type": "array", "items": { "type": "string" } },
+    "recent_pack": { "type": "array", "items": { "type": "string" } },
+    "tools_pack": { "type": "array", "items": { "type": "string" } },
+    "limits": {
+      "type": "object",
+      "required": ["max_total_tokens"],
+      "properties": {
+        "max_total_tokens": { "type": "integer" },
+        "max_output_tokens": { "type": "integer" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

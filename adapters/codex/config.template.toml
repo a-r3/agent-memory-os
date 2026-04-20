@@ -1,0 +1,8 @@
+# Codex Adapter Configuration Template
+
+agent_name = "codex"
+budget_tokens = 1200
+default_memory_scope = ["rule", "identity", "procedure"]
+default_repo_scope = []
+writeback_enabled = true
+runtime_payload_preview = true

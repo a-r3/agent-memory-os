@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Event",
+  "type": "object",
+  "required": ["id", "kind", "agent", "action", "created_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "kind": { "type": "string", "const": "event" },
+    "agent": { "type": "string" },
+    "action": { "type": "string" },
+    "task_id": { "type": "string" },
+    "inputs": { "type": "object" },
+    "outputs": { "type": "object" },
+    "status": {
+      "type": "string",
+      "enum": ["success", "failed", "pending"]
+    },
+    "created_at": { "type": "string" }
+  },
+  "additionalProperties": false
+}

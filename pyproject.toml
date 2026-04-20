@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-memory-os"
+version = "0.1.0"
+description = "Agent Memory OS: canonical memory, context compilation, MCP tools, adapters, and future-phase scaffolds."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [
+  { name = "Agent Memory OS Contributors" }
+]
+keywords = ["ai", "memory", "mcp", "context", "agents"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: Other/Proprietary License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules"
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2.2",
+  "mypy>=1.10.0",
+  "pytest>=8.2.0",
+  "ruff>=0.6.0"
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["apps*", "brain*", "mcp*"]
+exclude = ["tests*", "storage*", "prompts*", "adapters*"]
+namespaces = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra"
+testpaths = [
+  "tests"
+]
+python_files = [
+  "test_*.py"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [
+  "storage",
+  "prompts"
+]
+
+[tool.ruff.lint]
+select = [
+  "E",
+  "F",
+  "I",
+  "UP"
+]
+ignore = [
+  "E501"
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+strict_optional = true
+check_untyped_defs = true
+exclude = [
+  "^storage/",
+  "^prompts/",
+  "^adapters/"
+]

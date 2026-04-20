@@ -1,0 +1,11 @@
+{
+  "id": "session_delta:template",
+  "session_id": "agent:session",
+  "task": "Describe the completed task",
+  "new_facts": [],
+  "changed_facts": [],
+  "decisions": [],
+  "artifacts": [],
+  "open_questions": [],
+  "next_actions": []
+}

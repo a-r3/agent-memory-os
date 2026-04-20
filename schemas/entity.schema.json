@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Entity",
+  "type": "object",
+  "required": ["id", "kind", "name", "created_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "kind": {
+      "type": "string",
+      "enum": ["module", "component", "capability", "concept"]
+    },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "links": {
+      "type": "object",
+      "properties": {
+        "depends_on": { "type": "array", "items": { "type": "string" } },
+        "used_by": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" }
+  },
+  "additionalProperties": false
+}
