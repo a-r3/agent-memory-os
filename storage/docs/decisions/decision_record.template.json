@@ -1,0 +1,11 @@
+{
+  "id": "decision:template",
+  "kind": "decision",
+  "title": "Decision title",
+  "decision": "Decision summary",
+  "rationale": "",
+  "affects": [],
+  "owner": "",
+  "source_refs": [],
+  "status": "draft"
+}

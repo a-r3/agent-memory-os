@@ -1,0 +1,10 @@
+{
+  "id": "entity:template",
+  "kind": "module",
+  "name": "Entity name",
+  "description": "",
+  "links": {
+    "depends_on": [],
+    "used_by": []
+  }
+}

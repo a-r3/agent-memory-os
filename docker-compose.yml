@@ -1,0 +1,64 @@
+# Local development stack for Agent Memory OS.
+#
+# The current repository exposes importable application facades rather than
+# long-running HTTP servers, so each service performs a startup smoke import and
+# then stays alive for interactive development.
+
+services:
+  gateway:
+    image: python:3.12-slim
+    working_dir: /workspace
+    env_file:
+      - .env
+    volumes:
+      - ./:/workspace
+    command: >
+      sh -lc "python -c \"from apps.gateway.main import create_app; import json; print(json.dumps(create_app().health(), indent=2))\" && tail -f /dev/null"
+    depends_on:
+      - memory-cache
+
+  compiler:
+    image: python:3.12-slim
+    working_dir: /workspace
+    env_file:
+      - .env
+    volumes:
+      - ./:/workspace
+    command: >
+      sh -lc "python -c \"from apps.compiler.main import CompilerApp; import json; app=CompilerApp(); result=app.compile_for_task(agent='codex', task='docker compiler boot', budget_tokens=900); print(json.dumps(result['budget_report'], indent=2))\" && tail -f /dev/null"
+    depends_on:
+      - memory-cache
+
+  writeback:
+    image: python:3.12-slim
+    working_dir: /workspace
+    env_file:
+      - .env
+    volumes:
+      - ./:/workspace
+    command: >
+      sh -lc "python -c \"from apps.writeback.main import WritebackApp; app=WritebackApp(); print(app.submit_session_delta({'session_id':'compose:writeback','task':'docker writeback boot'}))\" && tail -f /dev/null"
+    depends_on:
+      - memory-cache
+
+  workers:
+    image: python:3.12-slim
+    working_dir: /workspace
+    env_file:
+      - .env
+    volumes:
+      - ./:/workspace
+    command: >
+      sh -lc "python -c \"from apps.workers.reporting_worker import ReportingWorker; import json; print(json.dumps(ReportingWorker().run(), indent=2))\" && tail -f /dev/null"
+    depends_on:
+      - memory-cache
+
+  memory-cache:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+
+networks:
+  default:
+    name: agent-memory-os

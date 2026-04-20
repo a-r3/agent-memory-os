@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SessionDelta",
+  "type": "object",
+  "required": ["id", "session_id", "task", "created_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "task": { "type": "string" },
+    "new_facts": { "type": "array", "items": { "type": "string" } },
+    "changed_facts": { "type": "array", "items": { "type": "string" } },
+    "decisions": { "type": "array", "items": { "type": "string" } },
+    "artifacts": { "type": "array", "items": { "type": "string" } },
+    "open_questions": { "type": "array", "items": { "type": "string" } },
+    "next_actions": { "type": "array", "items": { "type": "string" } },
+    "created_at": { "type": "string" }
+  },
+  "additionalProperties": false
+}

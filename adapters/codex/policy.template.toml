@@ -1,0 +1,6 @@
+# Codex Policy Template
+
+approval_required_on_trust_warning = true
+approval_required_on_trust_blocker = true
+allow_snapshot_import = false
+allow_archive_plans = true
