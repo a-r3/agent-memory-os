@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Memory OS Phase 6 to 15 Integration</title>
+  <desc id="desc">Sequential roadmap diagram showing Phases 6 through 15, their goals, and the canonical modules that implement retrieval intelligence, hygiene, governance, optimization, operations, persistence, runtime handoff, coordination, policy, and reporting.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 18px 'Segoe UI', Arial, sans-serif; fill: #475569; }
+      .phase { rx: 22; ry: 22; stroke-width: 2.5; }
+      .head { font: 700 19px 'Segoe UI', Arial, sans-serif; fill: #111827; }
+      .body { font: 14px 'Segoe UI', Arial, sans-serif; fill: #1f2937; }
+      .arrow { stroke: #475569; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .rail { stroke: #cbd5e1; stroke-width: 5; fill: none; }
+      .note { font: 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="980"/>
+  <text class="title" x="70" y="70">Phase 6–15 Integration</text>
+  <text class="subtitle" x="70" y="105">Sequential repository map from retrieval intelligence to operational playbooks. Every phase extends the same canonical services, MemoryAPI, MCP, and storage structure.</text>
+
+  <path class="rail" d="M120 260 L1480 260"/>
+  <path class="rail" d="M120 650 L1480 650"/>
+
+  <rect class="phase" x="70" y="150" width="260" height="190" fill="#dbeafe" stroke="#2563eb"/>
+  <text class="head" x="95" y="188">Phase 6</text>
+  <text class="body" x="95" y="220">Retrieval Intelligence and Links</text>
+  <text class="body" x="95" y="248">Modules:</text>
+  <text class="body" x="95" y="272">retrieval.py</text>
+  <text class="body" x="95" y="294">linking.py</text>
+  <text class="body" x="95" y="316">relationship_traversal.py</text>
+
+  <rect class="phase" x="370" y="150" width="260" height="190" fill="#dcfce7" stroke="#16a34a"/>
+  <text class="head" x="395" y="188">Phase 7</text>
+  <text class="body" x="395" y="220">Promotion, Dedupe, Hygiene</text>
+  <text class="body" x="395" y="248">Modules:</text>
+  <text class="body" x="395" y="272">memory_hygiene.py</text>
+  <text class="body" x="395" y="294">promotion.py, dedupe.py</text>
+  <text class="body" x="395" y="316">merge.py</text>
+
+  <rect class="phase" x="670" y="150" width="260" height="190" fill="#fef3c7" stroke="#d97706"/>
+  <text class="head" x="695" y="188">Phase 8</text>
+  <text class="body" x="695" y="220">Governance and Trust</text>
+  <text class="body" x="695" y="248">Modules:</text>
+  <text class="body" x="695" y="272">trust.py</text>
+  <text class="body" x="695" y="294">MemoryAPI write validation</text>
+  <text class="body" x="695" y="316">MCP trust report</text>
+
+  <rect class="phase" x="970" y="150" width="260" height="190" fill="#ede9fe" stroke="#7c3aed"/>
+  <text class="head" x="995" y="188">Phase 9</text>
+  <text class="body" x="995" y="220">Cost and Performance</text>
+  <text class="body" x="995" y="248">Modules:</text>
+  <text class="body" x="995" y="272">budgeting.py</text>
+  <text class="body" x="995" y="294">tiering.py</text>
+  <text class="body" x="995" y="316">compressors/</text>
+
+  <rect class="phase" x="1270" y="150" width="260" height="190" fill="#ffe4e6" stroke="#e11d48"/>
+  <text class="head" x="1295" y="188">Phase 10</text>
+  <text class="body" x="1295" y="220">Operational Readiness</text>
+  <text class="body" x="1295" y="248">Modules:</text>
+  <text class="body" x="1295" y="272">apps/gateway/main.py</text>
+  <text class="body" x="1295" y="294">routes/health.py</text>
+  <text class="body" x="1295" y="316">docs/operations.md</text>
+
+  <rect class="phase" x="70" y="540" width="260" height="210" fill="#e0f2fe" stroke="#0284c7"/>
+  <text class="head" x="95" y="578">Phase 11</text>
+  <text class="body" x="95" y="610">Persistent Storage and Replay</text>
+  <text class="body" x="95" y="638">storage.py, cache_refresh_planner.py</text>
+  <text class="body" x="95" y="660">archive.py, recovery_worker.py</text>
+  <text class="body" x="95" y="682">snapshots/, exports/, archives/</text>
+  <text class="body" x="95" y="704">snapshot_integrity prompt</text>
+
+  <rect class="phase" x="370" y="540" width="260" height="210" fill="#f5e8ff" stroke="#9333ea"/>
+  <text class="head" x="395" y="578">Phase 12</text>
+  <text class="body" x="395" y="610">Runtime Connectors and Handoff</text>
+  <text class="body" x="395" y="638">routes/runtime.py</text>
+  <text class="body" x="395" y="660">runtime_bridge.py</text>
+  <text class="body" x="395" y="682">runtime_payload_packer.py</text>
+  <text class="body" x="395" y="704">runtime templates and examples</text>
+
+  <rect class="phase" x="670" y="540" width="260" height="210" fill="#dcfce7" stroke="#15803d"/>
+  <text class="head" x="695" y="578">Phase 13</text>
+  <text class="body" x="695" y="610">Multi-Agent Coordination</text>
+  <text class="body" x="695" y="638">coordination_plan.py</text>
+  <text class="body" x="695" y="660">session_coordination_worker.py</text>
+  <text class="body" x="695" y="682">session_handoff.template.json</text>
+  <text class="body" x="695" y="704">handoff_client.py</text>
+
+  <rect class="phase" x="970" y="540" width="260" height="210" fill="#fef9c3" stroke="#ca8a04"/>
+  <text class="head" x="995" y="578">Phase 14</text>
+  <text class="body" x="995" y="610">Policy and Approval Gates</text>
+  <text class="body" x="995" y="638">approval.py</text>
+  <text class="body" x="995" y="660">policy_audit_worker.py</text>
+  <text class="body" x="995" y="682">policy_gate.template.md</text>
+  <text class="body" x="995" y="704">policy prompt and config template</text>
+
+  <rect class="phase" x="1270" y="540" width="260" height="210" fill="#ede9fe" stroke="#6d28d9"/>
+  <text class="head" x="1295" y="578">Phase 15</text>
+  <text class="body" x="1295" y="610">Observability and Playbooks</text>
+  <text class="body" x="1295" y="638">routes/operations.py</text>
+  <text class="body" x="1295" y="660">reporting_worker.py</text>
+  <text class="body" x="1295" y="682">operations_report.template.json</text>
+  <text class="body" x="1295" y="704">recovery_notes.template.md</text>
+
+  <path class="arrow" d="M330 245 L370 245"/>
+  <path class="arrow" d="M630 245 L670 245"/>
+  <path class="arrow" d="M930 245 L970 245"/>
+  <path class="arrow" d="M1230 245 L1270 245"/>
+  <path class="arrow" d="M1400 340 L1400 540"/>
+  <path class="arrow" d="M1230 645 L1270 645"/>
+  <path class="arrow" d="M930 645 L970 645"/>
+  <path class="arrow" d="M630 645 L670 645"/>
+  <path class="arrow" d="M330 645 L370 645"/>
+
+  <text class="note" x="70" y="900">Illustration generated from the real roadmap and repository tree. The sequence is deliberate: retrieval and hygiene mature first, then trust and budgeting, then persistence, runtime handoff, coordination, policy gates, and operational reporting.</text>
+</svg>

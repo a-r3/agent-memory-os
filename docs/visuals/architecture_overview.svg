@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Memory OS Architecture Overview</title>
+  <desc id="desc">Architecture diagram showing adapters and clients flowing through MCP into the Memory API, core services, applications, schemas, prompts, tests, and storage templates.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f5ef; }
+      .title { font: 700 34px 'Segoe UI', Arial, sans-serif; fill: #1f2937; }
+      .subtitle { font: 400 18px 'Segoe UI', Arial, sans-serif; fill: #475569; }
+      .section { font: 700 20px 'Segoe UI', Arial, sans-serif; fill: #111827; }
+      .text { font: 15px 'Segoe UI', Arial, sans-serif; fill: #1f2937; }
+      .small { font: 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .panel { rx: 24; ry: 24; stroke-width: 2; }
+      .line { stroke: #475569; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .softline { stroke: #94a3b8; stroke-width: 2.5; fill: none; marker-end: url(#arrowSoft); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowSoft" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="980"/>
+
+  <text class="title" x="70" y="70">Agent Memory OS 0.10.0</text>
+  <text class="subtitle" x="70" y="105">Canonical architecture through Phase 15: adapters and apps integrate through MCP and MemoryAPI, while retrieval, trust, budgeting, runtime payloads, hygiene, persistence, and reporting stay centralized.</text>
+
+  <rect class="panel" x="70" y="160" width="320" height="220" fill="#dceeff" stroke="#2563eb"/>
+  <text class="section" x="95" y="198">Clients and Adapters</text>
+  <text class="text" x="95" y="235">brain/adapters/codex_adapter.py</text>
+  <text class="text" x="95" y="262">brain/adapters/claude_adapter.py</text>
+  <text class="text" x="95" y="289">brain/adapters/generic_adapter.py</text>
+  <text class="small" x="95" y="330">Provider templates:</text>
+  <text class="small" x="95" y="352">adapters/codex/runtime.template.md</text>
+  <text class="small" x="95" y="372">adapters/claude/skills/runtime_payload_review.md</text>
+
+  <rect class="panel" x="470" y="160" width="300" height="220" fill="#e8f7df" stroke="#2f855a"/>
+  <text class="section" x="495" y="198">MCP Surface</text>
+  <text class="text" x="495" y="235">mcp/tools.py</text>
+  <text class="text" x="495" y="262">mcp/resources.py</text>
+  <text class="text" x="495" y="289">mcp/prompts.py</text>
+  <text class="text" x="495" y="316">mcp/server.py</text>
+  <text class="small" x="495" y="355">Stable tool entrypoints:</text>
+  <text class="small" x="495" y="377">context_compile, runtime_payload_preview, trust, health, tier, snapshot</text>
+
+  <rect class="panel" x="860" y="160" width="320" height="220" fill="#fff2d6" stroke="#d97706"/>
+  <text class="section" x="885" y="198">Canonical Memory API</text>
+  <text class="text" x="885" y="235">brain/api/memory_api.py</text>
+  <text class="small" x="885" y="270">Coordinating search, writeback, link creation, decision registration,</text>
+  <text class="small" x="885" y="292">context_pack compilation, runtime payload shaping, trust reporting,</text>
+  <text class="small" x="885" y="314">memory hygiene, tier reporting, snapshot export/import, link queries.</text>
+
+  <rect class="panel" x="70" y="470" width="510" height="370" fill="#f5e8ff" stroke="#7c3aed"/>
+  <text class="section" x="95" y="508">Core Services in brain/services/</text>
+  <text class="text" x="95" y="548">context_compiler.py</text>
+  <text class="text" x="95" y="575">retrieval.py, ranking.py, linking.py, relationship_traversal.py</text>
+  <text class="text" x="95" y="602">trust.py, context_pack_validation.py, budgeting.py</text>
+  <text class="text" x="95" y="629">summarization.py, writeback.py</text>
+  <text class="text" x="95" y="656">memory_hygiene.py, tiering.py, persistence.py</text>
+  <text class="small" x="95" y="705">Phase 6: retrieval intelligence and links</text>
+  <text class="small" x="95" y="728">Phase 7: promotion, dedupe, memory hygiene</text>
+  <text class="small" x="95" y="751">Phase 8: trust and governance validation</text>
+  <text class="small" x="95" y="774">Phase 9: budgeting, compression, tiering</text>
+  <text class="small" x="95" y="797">Phase 11–15: persistence, runtime payloads, operations reporting</text>
+
+  <rect class="panel" x="660" y="470" width="520" height="370" fill="#ffe4e6" stroke="#be123c"/>
+  <text class="section" x="685" y="508">Applications in apps/</text>
+  <text class="text" x="685" y="548">apps/gateway/: main.py, routes/context.py, health.py, storage.py, runtime.py, operations.py</text>
+  <text class="text" x="685" y="575">apps/gateway/mcp/: bridge.py, runtime_bridge.py</text>
+  <text class="text" x="685" y="602">apps/compiler/: main.py, planners/, packers/, compressors/</text>
+  <text class="text" x="685" y="629">apps/writeback/: main.py, promotion.py, dedupe.py, merge.py, archive.py, approval.py</text>
+  <text class="text" x="685" y="656">apps/workers/: ingest, compaction, graph_sync, recovery, session_coordination, policy_audit, reporting</text>
+  <text class="small" x="685" y="705">Operational facades for context compile, snapshot replay, runtime handoff,</text>
+  <text class="small" x="685" y="727">multi-agent coordination, policy audits, and Phase 15 playbooks.</text>
+
+  <rect class="panel" x="1260" y="160" width="270" height="680" fill="#eef2ff" stroke="#4338ca"/>
+  <text class="section" x="1285" y="198">Contracts and Artifacts</text>
+  <text class="text" x="1285" y="235">schemas/</text>
+  <text class="small" x="1285" y="258">context_pack.schema.json</text>
+  <text class="small" x="1285" y="279">event.schema.json</text>
+  <text class="small" x="1285" y="300">session_delta.schema.json</text>
+  <text class="small" x="1285" y="321">entity.schema.json</text>
+  <text class="text" x="1285" y="370">prompts/</text>
+  <text class="small" x="1285" y="393">compiler/, planner/, summarizer/, validators/</text>
+  <text class="text" x="1285" y="442">storage/</text>
+  <text class="small" x="1285" y="465">docs/identity, rules, decisions, entities, sessions, procedures</text>
+  <text class="small" x="1285" y="486">snapshots/, exports/, archives/</text>
+  <text class="text" x="1285" y="535">tests/</text>
+  <text class="small" x="1285" y="558">compiler, memory_api, MCP integration, trust and budgeting,</text>
+  <text class="small" x="1285" y="579">Phase 6–15 scaffolds, dedupe, graph links, retrieval validation</text>
+  <text class="text" x="1285" y="628">docs/</text>
+  <text class="small" x="1285" y="651">architecture, roadmap, operations, security, rollout, visuals</text>
+
+  <path class="line" d="M390 270 L470 270"/>
+  <path class="line" d="M770 270 L860 270"/>
+  <path class="line" d="M1020 380 L1020 470"/>
+  <path class="softline" d="M1180 270 L1260 270"/>
+  <path class="softline" d="M1180 540 L1260 540"/>
+  <path class="softline" d="M580 655 L660 655"/>
+
+  <text class="small" x="75" y="915">Illustration generated for this repository from the actual canonical module paths. It maps clients and adapters to MCP, MemoryAPI, services, application facades, and the storage or schema artifacts validated by tests.</text>
+</svg>

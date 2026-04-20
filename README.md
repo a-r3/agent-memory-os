@@ -87,44 +87,54 @@ The repository follows a layered model:
 
 ## Visuals
 
-The visuals in `docs/visuals/` are part of the main documentation set. GitHub
-renders the Mermaid diagrams directly from the linked markdown files.
+The repository now includes generated SVG diagrams in `docs/visuals/` so the
+README can embed architecture and workflow visuals directly. The original
+markdown diagram sources remain available alongside the SVG assets for review
+and maintenance.
 
 ### 1. Architecture Overview
 
-Caption: shows the stable runtime surfaces that remain intact through Phase 15:
-agents and clients, MCP gateway, `MemoryAPI`, core services, apps, and storage.
+This illustration maps the actual canonical structure of the repository:
+adapters and provider templates flow into MCP, MCP delegates to `MemoryAPI`,
+and `MemoryAPI` coordinates core services, app facades, schemas, prompts,
+tests, and storage artifacts.
 
-- Visual file: [docs/visuals/architecture_overview.md](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/architecture_overview.md)
+![Architecture Overview](docs/visuals/architecture_overview.svg)
+
+*Caption: `architecture_overview.svg` shows how `brain/adapters/`, `mcp/`,
+`brain/api/memory_api.py`, `brain/services/`, `apps/`, `schemas/`, `storage/`,
+`prompts/`, and `tests/` fit together through the canonical architecture. The
+source markdown version is [docs/visuals/architecture_overview.md](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/architecture_overview.md).*
 
 ### 2. Compile-to-Writeback Workflow
 
-Caption: shows the canonical task lifecycle from adapter request to compiled
-`context_pack`, trust and budget validation, runtime payload generation,
-execution, structured delta writeback, and downstream hygiene or persistence
-updates.
+This workflow illustration follows the repository’s real execution path:
+adapter or app request, MCP tool entry, `MemoryAPI` orchestration, retrieval and
+validation, trust checks, `context_pack` creation, runtime payload shaping,
+execution handoff, structured writeback, and downstream hygiene, persistence,
+and reporting.
 
-- Visual file: [docs/visuals/workflow_compile_execute_writeback.md](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/workflow_compile_execute_writeback.md)
+![Compile to Writeback Workflow](docs/visuals/workflow_compile_execute_writeback.svg)
+
+*Caption: `workflow_compile_execute_writeback.svg` visualizes the canonical path
+from `MemoryTools.context_compile(...)` through `brain/services/context_compiler.py`,
+`brain/services/trust.py`, runtime payload packers, structured delta writeback,
+and Phase 11–15 persistence and operations workflows. The source markdown
+version is [docs/visuals/workflow_compile_execute_writeback.md](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/workflow_compile_execute_writeback.md).*
 
 ### 3. Phase 6–15 Integration Map
 
-Caption: shows how the later phases build on one another without breaking
-canonical boundaries, from retrieval intelligence and hygiene through policy,
-persistence, coordination, and observability.
+This illustration presents the sequential Phase 6–15 buildout using the real
+module and template paths in the repository. It emphasizes that later phases
+extend the same canonical memory substrate instead of introducing separate side
+systems.
 
-- Visual file: [docs/visuals/phase6_15_integration.md](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/phase6_15_integration.md)
+![Phase 6 to 15 Integration](docs/visuals/phase6_15_integration.svg)
 
-### Embedded architecture snapshot
-
-```mermaid
-flowchart LR
-    A["Agents and Clients<br/>Codex, Claude, Generic"] --> B["MCP Gateway<br/>tools, resources, prompts, server"]
-    B --> C["Memory API<br/>canonical read/write orchestration"]
-    C --> D["Core Services<br/>retrieval, compiler, writeback, trust, budgeting, hygiene, tiering, persistence"]
-    D --> E["Storage and Templates<br/>docs, exports, archives, snapshots"]
-    C --> F["Apps Layer<br/>gateway, compiler, writeback, workers"]
-    F --> E
-```
+*Caption: `phase6_15_integration.svg` shows the progression from retrieval
+intelligence and hygiene through trust, budgeting, persistence, runtime
+handoff, multi-agent coordination, policy gates, and operational playbooks. The
+source markdown version is [docs/visuals/phase6_15_integration.md](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/phase6_15_integration.md).*
 
 ---
 
@@ -901,6 +911,9 @@ Schemas:
 
 Visual workflows:
 
+- [docs/visuals/architecture_overview.svg](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/architecture_overview.svg)
+- [docs/visuals/workflow_compile_execute_writeback.svg](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/workflow_compile_execute_writeback.svg)
+- [docs/visuals/phase6_15_integration.svg](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/phase6_15_integration.svg)
 - [docs/visuals/architecture_overview.md](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/architecture_overview.md)
 - [docs/visuals/workflow_compile_execute_writeback.md](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/workflow_compile_execute_writeback.md)
 - [docs/visuals/phase6_15_integration.md](/home/oem/Documents/01_Projects/agent-memory-os/docs/visuals/phase6_15_integration.md)
