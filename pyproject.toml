@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agent-memory-os"
-version = "0.1.0"
+version = "0.10.0"
 description = "Agent Memory OS: canonical memory, context compilation, MCP tools, adapters, and future-phase scaffolds."
 readme = "README.md"
 requires-python = ">=3.11"

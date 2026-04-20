@@ -62,7 +62,10 @@ def test_future_packers_and_compressors_are_importable() -> None:
 
 def test_future_phase_templates_exist() -> None:
     expected_paths = [
-        Path("docs/phase11_plus_plan.md"),
+        Path("docs/roadmap.md"),
+        Path("docs/visuals/architecture_overview.md"),
+        Path("docs/visuals/workflow_compile_execute_writeback.md"),
+        Path("docs/visuals/phase6_15_integration.md"),
         Path("prompts/compiler/runtime_payload.md"),
         Path("prompts/planner/cache_refresh_plan.md"),
         Path("prompts/planner/coordination_plan.md"),
@@ -84,6 +87,19 @@ def test_future_phase_templates_exist() -> None:
         Path("adapters/generic/client_examples/ops_client.py"),
     ]
     assert all(path.exists() for path in expected_paths)
+
+
+def test_roadmap_includes_merged_phase_15_plan() -> None:
+    roadmap = Path("docs/roadmap.md").read_text(encoding="utf-8")
+
+    assert "## Phase 11 — Persistent Storage and Replay" in roadmap
+    assert "## Phase 12 — Runtime Connectors and Execution Handoff" in roadmap
+    assert "## Phase 13 — Multi-Agent Coordination and Shared Session State" in roadmap
+    assert "## Phase 14 — Policy, Approval Gates, and Controlled Automation" in roadmap
+    assert "## Phase 15 — Observability and Operational Playbooks" in roadmap
+    assert "./visuals/architecture_overview.md" in roadmap
+    assert "./visuals/workflow_compile_execute_writeback.md" in roadmap
+    assert "./visuals/phase6_15_integration.md" in roadmap
 
 
 def test_runtime_bridge_reports_future_capabilities() -> None:

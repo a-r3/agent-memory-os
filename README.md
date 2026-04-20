@@ -2,6 +2,8 @@
 
 Agent Memory OS is a shared memory kernel for Codex, Claude/Cloud, and other AI agents.
 
+Current release: **0.10.0**
+
 It is designed to solve a recurring problem in multi-agent systems:
 
 - important knowledge gets fragmented across tools
@@ -128,12 +130,12 @@ Short-lived task-local state used during active work.
 
 ## Repository Status
 
-Current status: **bootstrap / architecture-first**
+Current status: **startup-ready / canonical Phase 6–15 scaffolds present**
 
 This repository is being initialized with:
 
 - core architecture documents
-- roadmap
+- merged roadmap through Phase 15
 - architectural decisions
 - schemas
 - bootstrap contracts for memory, context, and writeback
@@ -146,6 +148,7 @@ Implementation documents, adapters, storage details, and MCP contracts are added
 
 - `docs/architecture.md`
 - `docs/roadmap.md`
+- `docs/visuals/*.md`
 - `docs/decisions/*.md`
 - base schemas
 - MCP tool/resource contracts
@@ -172,7 +175,7 @@ future operational scaffolds remain distinct:
 - `adapters/`
   - agent-specific configuration and client examples
 - `docs/`
-  - architecture, roadmap, operations, security, rollout, and future phase plans
+  - architecture, roadmap, visuals, operations, security, and rollout docs
 - `tests/`
   - smoke tests and integration coverage for the canonical surfaces
 
@@ -251,6 +254,13 @@ Agent Memory OS exists to fix that.
 4. Implement context compiler MVP
 5. Add agent adapters
 6. Add governance, promotion, and health checks
+
+## Roadmap Status
+
+The main roadmap in `docs/roadmap.md` is the canonical planning document and now
+covers Phase 0 through Phase 15 in one place. Supporting visuals live in
+`docs/visuals/` and summarize the architecture, compile-to-writeback workflow,
+and Phase 6–15 integration path.
 
 ---
 

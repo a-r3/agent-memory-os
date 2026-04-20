@@ -22,6 +22,16 @@ Development follows these priorities:
 
 ---
 
+## Visual References
+
+The roadmap is accompanied by GitHub-friendly visual references:
+
+- [Architecture Overview](./visuals/architecture_overview.md)
+- [Compile-to-Writeback Workflow](./visuals/workflow_compile_execute_writeback.md)
+- [Phase 6–15 Integration Map](./visuals/phase6_15_integration.md)
+
+---
+
 ## Phase 0 — Architecture Nucleus
 
 ### Goal
@@ -316,6 +326,196 @@ Prepare the system for broader real-world use.
 
 ---
 
+## Phase 11 — Persistent Storage and Replay
+
+### Goal
+Move from in-memory-only execution to durable storage orchestration and replay.
+
+### Outcomes
+- snapshot and export orchestration exists
+- archival planning is connected to hygiene signals
+- replay and recovery scaffolds exist
+- stable prompt sections can be refreshed deliberately
+- persistence actions remain traceable through canonical APIs
+
+### Deliverables
+- `apps/gateway/routes/storage.py`
+- `apps/compiler/planners/cache_refresh_planner.py`
+- `apps/writeback/archive.py`
+- `apps/workers/recovery_worker.py`
+- `prompts/planner/cache_refresh_plan.md`
+- `prompts/validators/snapshot_integrity.md`
+- `storage/snapshots/snapshot_manifest.template.json`
+- `storage/exports/export_manifest.template.json`
+- `storage/archives/archive_manifest.template.json`
+
+### Integration Notes
+- all persistence actions must continue to flow through `brain/api/memory_api.py`
+- snapshot import/export remains separate from canonical `context_pack`
+- trust checks apply before replaying imported content into active memory
+
+### Minimal Tests
+- importability of recovery worker and archive planner
+- snapshot route smoke test
+- manifest template existence check
+
+### Exit Criteria
+- durable snapshot and export surfaces exist without bypassing canonical APIs
+- archive planning uses hygiene and tiering signals instead of ad hoc rules
+- replay paths are defined and guarded by trust validation
+- persistence metadata is structured and traceable
+
+---
+
+## Phase 12 — Runtime Connectors and Execution Handoff
+
+### Goal
+Bridge compiled context into real provider runtimes without moving execution logic into adapters themselves.
+
+### Outcomes
+- runtime payload preview exists
+- execution handoff scaffolds exist
+- runtime payloads are transport-neutral
+- provider-facing runtime guidance is documented
+- runtime capabilities remain reachable through MCP
+
+### Deliverables
+- `apps/gateway/routes/runtime.py`
+- `apps/gateway/mcp/runtime_bridge.py`
+- `apps/compiler/packers/runtime_payload_packer.py`
+- `prompts/compiler/runtime_payload.md`
+- `adapters/codex/runtime.template.md`
+- `adapters/claude/skills/runtime_payload_review.md`
+- `adapters/generic/client_examples/runtime_client.py`
+
+### Integration Notes
+- runtime scaffolds may inspect `context_diagnostics`, `runtime_payload`, and trust reports
+- execution handoff still writes structured deltas through MCP
+- no runtime should bypass `MemoryTools`
+
+### Minimal Tests
+- runtime route smoke test
+- runtime bridge capability map smoke test
+- runtime payload packer import and output shape test
+
+### Exit Criteria
+- compiled context can be transformed into stable runtime payloads
+- adapters remain thin even when runtime-specific guidance exists
+- runtime handoff surfaces are available without duplicating memory logic
+- structured writeback remains the canonical completion path
+
+---
+
+## Phase 13 — Multi-Agent Coordination and Shared Session State
+
+### Goal
+Coordinate multiple memory clients over the same durable substrate.
+
+### Outcomes
+- coordination planning exists
+- shared handoff artifacts exist
+- session coordination workers exist
+- agent-to-agent handoff remains structured and delta-based
+- shared entities and decisions can be prioritized intentionally
+
+### Deliverables
+- `apps/compiler/planners/coordination_plan.py`
+- `apps/workers/session_coordination_worker.py`
+- `prompts/planner/coordination_plan.md`
+- `storage/docs/sessions/session_handoff.template.json`
+- `adapters/generic/client_examples/handoff_client.py`
+
+### Integration Notes
+- coordination artifacts must remain structured and delta-based
+- link-aware retrieval should prioritize shared entities and decisions
+- session handoff does not change the `context_pack` schema
+
+### Minimal Tests
+- coordination planner import and smoke run
+- handoff template presence test
+- coordination worker smoke test
+
+### Exit Criteria
+- multiple agents can coordinate without falling back to raw transcript sharing
+- handoff artifacts remain schema-shaped and traceable
+- shared session state does not weaken retrieval discipline
+- multi-agent work stays compatible with existing memory contracts
+
+---
+
+## Phase 14 — Policy, Approval Gates, and Controlled Automation
+
+### Goal
+Introduce explicit approval and policy checkpoints for higher-risk memory changes.
+
+### Outcomes
+- approval-plan generation exists for high-impact writes
+- policy audit scaffolds exist
+- validation templates exist for approval-required operations
+- policy checks can reuse trust and hygiene outputs
+- controlled automation stays non-destructive by default
+
+### Deliverables
+- `apps/writeback/approval.py`
+- `apps/workers/policy_audit_worker.py`
+- `prompts/validators/policy_gate.md`
+- `storage/docs/rules/policy_gate.template.md`
+- `adapters/codex/policy.template.toml`
+
+### Integration Notes
+- policy checks should consume trust and hygiene reports already exposed by MCP
+- approval gates should annotate actions, not mutate memory directly
+
+### Minimal Tests
+- approval planner importability
+- policy audit worker smoke test
+- policy template presence test
+
+### Exit Criteria
+- higher-risk changes can be flagged before writeback proceeds
+- approval surfaces remain additive rather than destructive
+- policy logic stays aligned with trust, hygiene, and traceability rules
+- controlled automation can be introduced without weakening governance
+
+---
+
+## Phase 15 — Observability and Operational Playbooks
+
+### Goal
+Complete the transition from runnable prototype to maintainable memory platform.
+
+### Outcomes
+- operational reporting exists
+- backup, recovery, and health report helpers exist
+- observability surfaces are documented
+- exported operations reports exist
+- operational drills and recovery notes become structured artifacts
+
+### Deliverables
+- `apps/gateway/routes/operations.py`
+- `apps/workers/reporting_worker.py`
+- `prompts/validators/operations_review.md`
+- `storage/exports/operations_report.template.json`
+- `storage/archives/recovery_notes.template.md`
+- `adapters/generic/client_examples/ops_client.py`
+
+### Integration Notes
+- observability surfaces should remain read-only unless explicitly invoking import/export actions
+- generated reports should reuse canonical MCP methods rather than duplicating service logic
+
+### Minimal Tests
+- reporting worker smoke test
+- operations route smoke test
+- export/report template presence test
+
+### Exit Criteria
+- operators can inspect health, trust, hygiene, and snapshot state coherently
+- recovery drills have structured notes and exported reports
+- observability remains connected to canonical services instead of side systems
+- the repository supports maintainable operational workflows through Phase 15
+
+---
+
 ## Roadmap Discipline
 
 The roadmap should follow these rules:
@@ -351,5 +551,6 @@ It should be built in stages:
 - then as a governed memory system
 - then as a compact context system
 - then as a shared runtime substrate for agents
+- then as a durable, observable, policy-aware platform for coordinated agents
 
 That sequence is the roadmap.
